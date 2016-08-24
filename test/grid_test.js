@@ -42,4 +42,20 @@ describe('Grid', function () {
 
       assert.equal(result.value, 0);
   });
+
+  it('should pull a collection of cells', function () {
+      var data_hash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(data_hash);
+      grid.getCell(0,0).setValue(1);
+      var results = grid.pullCells(0, 0, 2, 2);
+      var targetedCell = results.find(function(cell) {
+          return cell.x === 0 && cell.y === 0;
+      });
+
+      assert.equal(results.length, 4);
+      assert.equal(targetedCell.value, 1);
+  });
 });
