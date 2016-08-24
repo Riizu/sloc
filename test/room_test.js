@@ -32,5 +32,20 @@ describe('Room', function () {
         var actualDimensions = [room.cells.length, room.cells[0].length];
 
         assert.deepEqual(actualDimensions, expectedDimensions);
+        assert.equal(room.cells[0][0] instanceof Cell, true);
+    });
+
+    it('should be able to get one of its cells', function () {
+        var roomData = {
+            x: 0,
+            y: 0,
+            width: 2,
+            height: 2
+        };
+        var room = new Room(roomData);
+
+        var result = room.getCell(0, 0);
+
+        assert.equal(result.value, 0);
     });
 });
