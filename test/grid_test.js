@@ -31,11 +31,15 @@ describe('Grid', function () {
       assert.equal(result[0][0] instanceof Cell, true);
   });
 
-  it.skip('should get a cell', function () {
-      var grid = new Grid(20, 20);
-      var x = 0;
-      var y = 0;
-      var result = grid.getCell(x, y);
-      assert.equal(result, 0);
+  it('should get a cell', function () {
+      var data_hash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(data_hash);
+
+      var result = grid.getCell(0, 0);
+
+      assert.equal(result.value, 0);
   });
 });
