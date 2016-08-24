@@ -19,4 +19,18 @@ describe('Room', function () {
         assert.equal(room.width, 2);
         assert.equal(room.height, 2);
     });
+
+    it('should have a collection of cells', function () {
+        var roomData = {
+            x: 0,
+            y: 0,
+            width: 2,
+            height: 2
+        };
+        var room = new Room(roomData);
+        var expectedDimensions = [2, 2];
+        var actualDimensions = [room.cells.length, room.cells[0].length];
+
+        assert.deepEqual(actualDimensions, expectedDimensions);
+    });
 });
