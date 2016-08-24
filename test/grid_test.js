@@ -60,7 +60,6 @@ describe('Grid', function () {
       assert.equal(targetedCell.value, 1);
   });
 
-  //rooms
   it('should pull all rooms in the grid when no rooms are present', function(){
       var dataHash= {
           height: 20,
@@ -72,13 +71,21 @@ describe('Grid', function () {
       assert.deepEqual(rooms, []);  // Should we return an empty array or null 
   });
 
-  it.skip('should pull all rooms in the grid when rooms are present', function(){
+  it('should pull all rooms in the grid when rooms are present', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
 
+      assert.deepEqual(grid.rooms, []);
+
+      grid.createRoom({x: 0, y: 0, height: 2, width: 2});
+      assert.deepEqual(grid.rooms.length, 1);
   });
 
   // single room
 
-  //create_room
   it('should create a room on the grid', function(){
       var dataHash = {
           height: 20,
