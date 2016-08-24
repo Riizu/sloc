@@ -9,7 +9,8 @@ describe('Room', function () {
             x: 0,
             y: 0,
             width: 2,
-            height: 2
+            height: 2,
+            grid: new Grid({height: 20, width: 20}),
         };
 
         var room = new Room(roomData);
@@ -25,14 +26,15 @@ describe('Room', function () {
             x: 0,
             y: 0,
             width: 2,
-            height: 2
+            height: 2,
+            grid: new Grid({height: 20, width: 20}),
         };
         var room = new Room(roomData);
-        var expectedDimensions = [2, 2];
-        var actualDimensions = [room.cells.length, room.cells[0].length];
+        var expectedSize = 4;
+        var actualSize = room.cells.length;
 
-        assert.deepEqual(actualDimensions, expectedDimensions);
-        assert.equal(room.cells[0][0] instanceof Cell, true);
+        assert.deepEqual(actualSize, expectedSize);
+        assert.equal(room.cells[0] instanceof Cell, true);
     });
 
     it('should be able to get one of its cells', function () {
@@ -40,12 +42,28 @@ describe('Room', function () {
             x: 0,
             y: 0,
             width: 2,
-            height: 2
+            height: 2,
+            grid: new Grid({height: 20, width: 20}),
         };
         var room = new Room(roomData);
 
         var result = room.getCell(0, 0);
 
         assert.equal(result.value, 0);
+    });
+
+    it('should have a collection of cells that correspond to the exisiting grid', function () {
+        var roomData = {
+            x: 0,
+            y: 0,
+            width: 2,
+            height: 2,
+            grid: new Grid({height: 20, width: 20}),
+        };
+        var room = new Room(roomData);
+        var targetCell = room.getCell(0,0);
+        room.grid.getCell(0,0).setValue(2);
+
+        assert.equal(targetCell.value, 2);
     });
 });
