@@ -115,4 +115,133 @@ describe('Grid', function () {
 
       assert.equal(room instanceof Room, true);
   });
+
+  it('should determine if a space is currently not occupied by a room', function() {
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+
+      var result = grid.isNotOccupied(2, 3, 2, 2);
+
+      assert.equal(result, false);
+  });
+
+  it('should determine if a space completely overlaps another room', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 3, width: 4, height: 4});
+
+      var result = grid.isNotOccupied(2, 3, 4, 4);
+
+      assert.equal(result, true);
+  });
+
+  it('should determine if a space overlaps the upper left corner of another room', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 3, width: 4, height: 4});
+
+      var result = grid.isNotOccupied(1, 2, 2, 2);
+
+      assert.equal(result, true);
+  });
+
+  it('should determine if a space overlaps the upper right corner of another room', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 3, width: 4, height: 4});
+
+      var result = grid.isNotOccupied(5, 2, 2, 2);
+
+      assert.equal(result, true);
+  });
+
+  it('should determine if a space overlaps the bottom left corner of another room', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 3, width: 4, height: 4});
+
+      var result = grid.isNotOccupied(1, 6, 2, 2);
+
+      assert.equal(result, true);
+  });
+
+  it('should determine if a space overlaps the bottom right corner of another room', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 3, width: 4, height: 4});
+
+      var result = grid.isNotOccupied(5, 6, 2, 2);
+
+      assert.equal(result, true);
+  });
+
+  it('should determine if a space overlaps the top of another room', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 3, width: 4, height: 4});
+
+      var result = grid.isNotOccupied(2, 2, 4, 2);
+
+      assert.equal(result, true);
+  });
+
+  it('should determine if a space overlaps the bottom of another room', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 3, width: 4, height: 4});
+
+      var result = grid.isNotOccupied(2, 6, 4, 2);
+
+      assert.equal(result, true);
+  });
+
+  it('should determine if a space overlaps the left side of another room', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 3, width: 4, height: 4});
+
+      var result = grid.isNotOccupied(1, 3, 2, 4);
+
+      assert.equal(result, true);
+  });
+
+  it('should determine if a space overlaps the right side of another room', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 3, width: 4, height: 4});
+
+      var result = grid.isNotOccupied(5, 3, 2, 4);
+
+      assert.equal(result, true);
+  });
 });
