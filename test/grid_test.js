@@ -84,7 +84,20 @@ describe('Grid', function () {
       assert.deepEqual(grid.rooms.length, 1);
   });
 
-  // single room
+  it('should find a specific room', function(){
+      var dataHash = {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(dataHash);
+      
+      grid.createRoom({x: 0, y: 0, height: 2, width: 2});
+      var expectedRoom = grid.createRoom({x: 5, y: 5, height: 2, width: 2});
+      grid.createRoom({x: 10, y: 10, height: 2, width: 2});
+      var room = grid.findRoom(5, 5);
+      
+      assert.equal(room, expectedRoom);
+  });
 
   it('should create a room on the grid', function(){
       var dataHash = {
