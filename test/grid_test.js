@@ -1,6 +1,7 @@
 const assert = require('chai').assert;
 const Grid = require('../lib/grid');
 const Cell = require('../lib/cell');
+const Room = require('../lib/room');
 
 describe('Grid', function () {
   it('should have a 2d array matching its initialized size', function () {
@@ -58,4 +59,20 @@ describe('Grid', function () {
       assert.equal(results.length, 4);
       assert.equal(targetedCell.value, 1);
   });
+
+  //rooms
+  it('should pull all rooms in the grid when no rooms are present', function(){
+      var data_hash= {
+          height: 20,
+          width: 20,
+      };
+      var grid = new Grid(data_hash);
+      var rooms = grid.rooms;
+
+      assert.deepEqual(rooms, []);  // Should we return an empty array or null 
+  });
+
+  // single room
+
+  //create_room
 });
