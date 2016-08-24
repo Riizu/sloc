@@ -66,4 +66,19 @@ describe('Room', function () {
 
         assert.equal(targetCell.value, 2);
     });
+
+    it('should assign itself to its cells', function () {
+        var roomData = {
+            x: 0,
+            y: 0,
+            width: 2,
+            height: 2,
+            grid: new Grid({height: 20, width: 20}),
+        };
+        var room = new Room(roomData);
+
+        var result = room.getCell(0, 0).room;
+
+        assert.equal(result, room);
+    });
 });
