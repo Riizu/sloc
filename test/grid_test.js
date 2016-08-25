@@ -7,19 +7,19 @@ describe('Grid', function () {
   it('should have a 2d array matching its initialized size', function () {
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
 
-      assert.equal(grid.width, 20);
-      assert.equal(grid.height, 20);
-      assert.equal(grid.cells instanceof Array, true);
+      assert.equal(grid.width, dataHash.width);
+      assert.equal(grid.height, dataHash.height);
+      assert.equal(grid.cellArray instanceof Array, true);
   });
 
   it('should generate a collection of cells in a 2d array', function () {
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var expectedDimensions = [dataHash.height, dataHash.width];
       var grid = new Grid(dataHash);
@@ -35,7 +35,7 @@ describe('Grid', function () {
   it('should get a cell', function () {
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
 
@@ -47,7 +47,7 @@ describe('Grid', function () {
   it('should pull a collection of cells', function () {
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       grid.getCell(0,0).setValue(1);
@@ -63,7 +63,7 @@ describe('Grid', function () {
   it('should pull all rooms in the grid when no rooms are present', function(){
       var dataHash= {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       var rooms = grid.rooms;
@@ -74,7 +74,7 @@ describe('Grid', function () {
   it('should pull all rooms in the grid when rooms are present', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
 
@@ -87,7 +87,7 @@ describe('Grid', function () {
   it('should find a specific room', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       
@@ -102,7 +102,7 @@ describe('Grid', function () {
   it('should create a room on the grid', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       var roomInfo = {
@@ -119,7 +119,7 @@ describe('Grid', function () {
   it('should determine if a space is currently not occupied by a room', function() {
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
 
@@ -131,7 +131,7 @@ describe('Grid', function () {
   it('should determine if a space completely overlaps another room', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       grid.createRoom({x: 2, y: 3, width: 4, height: 4});
@@ -144,7 +144,7 @@ describe('Grid', function () {
   it('should determine if a space overlaps the upper left corner of another room', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       grid.createRoom({x: 2, y: 3, width: 4, height: 4});
@@ -157,7 +157,7 @@ describe('Grid', function () {
   it('should determine if a space overlaps the upper right corner of another room', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       grid.createRoom({x: 2, y: 3, width: 4, height: 4});
@@ -170,7 +170,7 @@ describe('Grid', function () {
   it('should determine if a space overlaps the bottom left corner of another room', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       grid.createRoom({x: 2, y: 3, width: 4, height: 4});
@@ -183,7 +183,7 @@ describe('Grid', function () {
   it('should determine if a space overlaps the bottom right corner of another room', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       grid.createRoom({x: 2, y: 3, width: 4, height: 4});
@@ -196,7 +196,7 @@ describe('Grid', function () {
   it('should determine if a space overlaps the top of another room', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       grid.createRoom({x: 2, y: 3, width: 4, height: 4});
@@ -209,7 +209,7 @@ describe('Grid', function () {
   it('should determine if a space overlaps the bottom of another room', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       grid.createRoom({x: 2, y: 3, width: 4, height: 4});
@@ -222,7 +222,7 @@ describe('Grid', function () {
   it('should determine if a space overlaps the left side of another room', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       grid.createRoom({x: 2, y: 3, width: 4, height: 4});
@@ -235,7 +235,7 @@ describe('Grid', function () {
   it('should determine if a space overlaps the right side of another room', function(){
       var dataHash = {
           height: 20,
-          width: 20,
+          width: 28,
       };
       var grid = new Grid(dataHash);
       grid.createRoom({x: 2, y: 3, width: 4, height: 4});

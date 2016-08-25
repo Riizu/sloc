@@ -10,7 +10,7 @@ describe('Room', function () {
             y: 0,
             width: 2,
             height: 2,
-            grid: new Grid({height: 20, width: 20}),
+            grid: new Grid({height: 20, width: 28}),
         };
 
         var room = new Room(roomData);
@@ -27,14 +27,14 @@ describe('Room', function () {
             y: 0,
             width: 2,
             height: 2,
-            grid: new Grid({height: 20, width: 20}),
+            grid: new Grid({height: 20, width: 28}),
         };
         var room = new Room(roomData);
         var expectedSize = 4;
-        var actualSize = room.cells.length;
+        var actualSize = room.cellArray.length;
 
         assert.deepEqual(actualSize, expectedSize);
-        assert.equal(room.cells[0] instanceof Cell, true);
+        assert.equal(room.cellArray[0] instanceof Cell, true);
     });
 
     it('should be able to get one of its cells', function () {
@@ -43,7 +43,7 @@ describe('Room', function () {
             y: 0,
             width: 2,
             height: 2,
-            grid: new Grid({height: 20, width: 20}),
+            grid: new Grid({height: 20, width: 28}),
         };
         var room = new Room(roomData);
 
@@ -58,7 +58,7 @@ describe('Room', function () {
             y: 0,
             width: 2,
             height: 2,
-            grid: new Grid({height: 20, width: 20}),
+            grid: new Grid({height: 20, width: 28}),
         };
         var room = new Room(roomData);
         var targetCell = room.getCell(0,0);
@@ -73,7 +73,7 @@ describe('Room', function () {
             y: 0,
             width: 2,
             height: 2,
-            grid: new Grid({height: 20, width: 20}),
+            grid: new Grid({height: 20, width: 28}),
         };
         var room = new Room(roomData);
 

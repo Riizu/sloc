@@ -4,11 +4,11 @@ var DisplayHandler = require('../lib/display_handler');
 
 describe('DisplayHandler', function () {
     it("should be initialized with a grid and a canvas", function() {
-        var canvas = "dummy canvas";
-        var grid = new Grid({width: 20, height: 20});
-        var dh = new DisplayHandler({grid: grid, canvas: canvas});
+        var context = "dummy context";
+        var grid = new Grid({width: 28, height: 20});
+        var dh = new DisplayHandler({grid: grid, context: context});
 
-        assert.equal(dh.canvas, canvas);
+        assert.equal(dh.context, context);
         assert.equal(dh.grid, grid);
     });
 });
