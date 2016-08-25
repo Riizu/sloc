@@ -311,5 +311,49 @@ describe('Grid', function () {
     grid.generateRooms(92, 3, 7);
 
     assert.equal(grid.rooms.length, 1);
-  })
+  });
+
+  it('should find a valid MazeStart cell', function() {
+      var grid = new Grid({width: 4, height: 4});
+      var validCells = grid.pullCells(1, 1, 2, 2);
+
+      var found = grid.findMazeStarts(validCells);
+
+      assert.equal(found.length, 4);
+  });
+
+  it('should not find a valid MazeStart cell if all cells have a neighbor', function() {
+      var grid = new Grid({width: 4, height: 4});
+      grid.getCell(0,0).setValue(1);
+      grid.getCell(0,1).setValue(1);
+      grid.getCell(0,2).setValue(1);
+      grid.getCell(0,3).setValue(1);
+      grid.getCell(3,0).setValue(1);
+      grid.getCell(3,1).setValue(1);
+      grid.getCell(3,2).setValue(1);
+      grid.getCell(3,3).setValue(1);
+
+      var validCells = grid.pullCells(1, 1, 2, 2);
+
+      var found = grid.findMazeStarts(validCells);
+
+      assert.equal(found.length, 0);
+  });
+
+  it('should find a valid MazeStart cell if all cells but one have a neighbor', function() {
+      var grid = new Grid({width: 4, height: 4});
+      grid.getCell(0,0).setValue(1);
+      grid.getCell(0,2).setValue(1);
+      grid.getCell(0,3).setValue(1);
+      grid.getCell(3,0).setValue(1);
+      grid.getCell(3,1).setValue(1);
+      grid.getCell(3,2).setValue(1);
+      grid.getCell(3,3).setValue(1);
+
+      var validCells = grid.pullCells(1, 1, 2, 2);
+
+      var found = grid.findMazeStarts(validCells);
+
+      assert.equal(found.length, 1);
+  });
 });
