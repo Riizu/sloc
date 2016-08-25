@@ -49,7 +49,7 @@ describe('Room', function () {
 
         var result = room.getCell(0, 0);
 
-        assert.equal(result.value, 0);
+        assert.equal(result.value, 1);
     });
 
     it('should have a collection of cells that correspond to the exisiting grid', function () {
