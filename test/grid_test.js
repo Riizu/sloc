@@ -68,7 +68,7 @@ describe('Grid', function () {
       var grid = new Grid(dataHash);
       var rooms = grid.rooms;
 
-      assert.deepEqual(rooms, []);  // Should we return an empty array or null 
+      assert.deepEqual(rooms, []);  // Should we return an empty array or null
   });
 
   it('should pull all rooms in the grid when rooms are present', function(){
@@ -90,12 +90,12 @@ describe('Grid', function () {
           width: 28,
       };
       var grid = new Grid(dataHash);
-      
+
       grid.createRoom({x: 0, y: 0, height: 2, width: 2});
       var expectedRoom = grid.createRoom({x: 5, y: 5, height: 2, width: 2});
       grid.createRoom({x: 10, y: 10, height: 2, width: 2});
       var room = grid.findRoom(5, 5);
-      
+
       assert.equal(room, expectedRoom);
   });
 
@@ -125,7 +125,8 @@ describe('Grid', function () {
 
       var result = grid.isNotOccupied(2, 3, 2, 2);
 
-      assert.equal(result, false);
+      assert.equal(result, true);
+      assert.equal(grid.rooms.length, 0);
   });
 
   it('should determine if a space completely overlaps another room', function(){
@@ -138,7 +139,8 @@ describe('Grid', function () {
 
       var result = grid.isNotOccupied(2, 3, 4, 4);
 
-      assert.equal(result, true);
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
   });
 
   it('should determine if a space overlaps the upper left corner of another room', function(){
@@ -151,7 +153,8 @@ describe('Grid', function () {
 
       var result = grid.isNotOccupied(1, 2, 2, 2);
 
-      assert.equal(result, true);
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
   });
 
   it('should determine if a space overlaps the upper right corner of another room', function(){
@@ -164,7 +167,8 @@ describe('Grid', function () {
 
       var result = grid.isNotOccupied(5, 2, 2, 2);
 
-      assert.equal(result, true);
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
   });
 
   it('should determine if a space overlaps the bottom left corner of another room', function(){
@@ -177,7 +181,8 @@ describe('Grid', function () {
 
       var result = grid.isNotOccupied(1, 6, 2, 2);
 
-      assert.equal(result, true);
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
   });
 
   it('should determine if a space overlaps the bottom right corner of another room', function(){
@@ -190,7 +195,8 @@ describe('Grid', function () {
 
       var result = grid.isNotOccupied(5, 6, 2, 2);
 
-      assert.equal(result, true);
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
   });
 
   it('should determine if a space overlaps the top of another room', function(){
@@ -203,7 +209,8 @@ describe('Grid', function () {
 
       var result = grid.isNotOccupied(2, 2, 4, 2);
 
-      assert.equal(result, true);
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
   });
 
   it('should determine if a space overlaps the bottom of another room', function(){
@@ -216,7 +223,8 @@ describe('Grid', function () {
 
       var result = grid.isNotOccupied(2, 6, 4, 2);
 
-      assert.equal(result, true);
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
   });
 
   it('should determine if a space overlaps the left side of another room', function(){
@@ -229,7 +237,8 @@ describe('Grid', function () {
 
       var result = grid.isNotOccupied(1, 3, 2, 4);
 
-      assert.equal(result, true);
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
   });
 
   it('should determine if a space overlaps the right side of another room', function(){
@@ -242,6 +251,65 @@ describe('Grid', function () {
 
       var result = grid.isNotOccupied(5, 3, 2, 4);
 
-      assert.equal(result, true);
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
   });
+
+  it('should determine if a space is within a room', function(){
+      var dataHash = {
+          height: 20,
+          width: 28,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 0, y: 0, width: 28, height: 20});
+
+      var result = grid.isNotOccupied(5, 3, 2, 4);
+
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
+  });
+
+  it('should determine if a space is contains a room', function(){
+      var dataHash = {
+          height: 20,
+          width: 28,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 2, width: 4, height: 4});
+
+      var result = grid.isNotOccupied(1, 1, 5, 5);
+
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 1);
+  });
+
+  it('should determine if a space overlaps two rooms', function(){
+      var dataHash = {
+          height: 20,
+          width: 28,
+      };
+      var grid = new Grid(dataHash);
+      grid.createRoom({x: 2, y: 2, width: 2, height: 2});
+      grid.createRoom({x: 5, y: 2, width: 2, height: 2});
+
+      var result = grid.isNotOccupied(3, 2, 4, 2);
+
+      assert.equal(result, false);
+      assert.equal(grid.rooms.length, 2);
+  });
+
+
+  it('should not generate overlapping rooms', function(){
+    var dataHash = {
+      height: 20,
+      width: 28,
+    };
+    var grid = new Grid(dataHash);
+    grid.createRoom({x: 0, y: 0, width: 28, height: 20});
+
+    assert.equal(grid.rooms.length, 1);
+    grid.generateRooms(92, 3, 7);
+
+    assert.equal(grid.rooms.length, 1);
+  })
 });
