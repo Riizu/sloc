@@ -31,10 +31,10 @@ describe('Room', function () {
         };
         var room = new Room(roomData);
         var expectedSize = 4;
-        var actualSize = room.cellArray.length;
+        var actualSize = room.cells.length;
 
         assert.deepEqual(actualSize, expectedSize);
-        assert.equal(room.cellArray[0] instanceof Cell, true);
+        assert.equal(room.cells[0] instanceof Cell, true);
     });
 
     it('should be able to get one of its cells', function () {
@@ -49,7 +49,7 @@ describe('Room', function () {
 
         var result = room.getCell(0, 0);
 
-        assert.equal(result.value, 1);
+        assert.equal(result.value, 2);
     });
 
     it('should have a collection of cells that correspond to the exisiting grid', function () {

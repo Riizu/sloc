@@ -297,19 +297,4 @@ describe('Grid', function () {
       assert.equal(result, false);
       assert.equal(grid.rooms.length, 2);
   });
-
-
-  it('should not generate overlapping rooms', function(){
-    var dataHash = {
-      height: 20,
-      width: 28,
-    };
-    var grid = new Grid(dataHash);
-    grid.createRoom({x: 0, y: 0, width: 28, height: 20});
-
-    assert.equal(grid.rooms.length, 1);
-    grid.generateRooms(92, 3, 7);
-
-    assert.equal(grid.rooms.length, 1);
-  })
 });
