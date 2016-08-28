@@ -37,9 +37,9 @@ describe('Cell', function () {
         var grid = new Grid({width: 3, height: 3});
         var testCell = grid.getCell(1, 1);
 
-        var numNeighbors = testCell.checkNeighbors(['north', 'south', 'east', 'west']);
+        var numNeighbors = testCell.hasNeighbors(['north', 'south', 'east', 'west']);
 
-        assert.equal(numNeighbors, 0);
+        assert.equal(numNeighbors, false);
     });
 
     it('should determine it has one neighbor if a single solid cell is north of it', function () {
@@ -47,9 +47,9 @@ describe('Cell', function () {
         grid.getCell(1, 0).setValue(1);
         var testCell = grid.getCell(1, 1);
 
-        var numNeighbors = testCell.checkNeighbors(['north', 'south', 'east', 'west']);
+        var numNeighbors = testCell.hasNeighbors(['north', 'south', 'east', 'west']);
 
-        assert.equal(numNeighbors, 1);
+        assert.equal(numNeighbors, true);
     });
 
     it('should determine it has one neighbor if a single solid cell is south of it', function () {
@@ -57,9 +57,9 @@ describe('Cell', function () {
         grid.getCell(1, 2).setValue(1);
         var testCell = grid.getCell(1, 1);
 
-        var numNeighbors = testCell.checkNeighbors(['north', 'south', 'east', 'west']);
+        var numNeighbors = testCell.hasNeighbors(['north', 'south', 'east', 'west']);
 
-        assert.equal(numNeighbors, 1);
+        assert.equal(numNeighbors, true);
     });
 
     it('should determine it has one neighbor if a single solid cell is west of it', function () {
@@ -67,9 +67,9 @@ describe('Cell', function () {
         grid.getCell(0, 1).setValue(1);
         var testCell = grid.getCell(1, 1);
 
-        var numNeighbors = testCell.checkNeighbors(['north', 'south', 'east', 'west']);
+        var numNeighbors = testCell.hasNeighbors(['north', 'south', 'east', 'west']);
 
-        assert.equal(numNeighbors, 1);
+        assert.equal(numNeighbors, true);
     });
 
     it('should determine it has one neighbor if a single solid cell is east of it', function () {
@@ -77,8 +77,8 @@ describe('Cell', function () {
         grid.getCell(2, 1).setValue(1);
         var testCell = grid.getCell(1, 1);
 
-        var numNeighbors = testCell.checkNeighbors(['north', 'south', 'east', 'west']);
+        var numNeighbors = testCell.hasNeighbors(['north', 'south', 'east', 'west']);
 
-        assert.equal(numNeighbors, 1);
+        assert.equal(numNeighbors, true);
     });
 });
