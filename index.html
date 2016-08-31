@@ -6,7 +6,23 @@
   <link rel="stylesheet" type="text/css" href="./assets/stylesheets/dungeon.css">
 </head>
 <body>
-  <canvas id="game" width="896px" height="640px"></canvas>
+  <div class="game">
+    <canvas class="canvas-top" id="game" width="896px" height="640px"></canvas>
+    <div class="text-background">
+      <h2 class="title">Welcome to Seven Levels of Code</h2>
+      <div class="row-1">
+        <div class="player-health">
+          <h4 id="health">Player Health:</h4>
+        </div>
+        <div class="floor-level">
+          <h4 id="level">Floor: 1</h4>
+        </div>
+        <div class="player-score">
+          <h4 id="score"></h4>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="main.bundle.js"></script>
 </body>
 </html>
