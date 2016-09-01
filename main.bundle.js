@@ -149,10 +149,10 @@
 	  }
 
 	  gameWon() {
-	    if (this.firstPass === 0 && this.level === 2) {
+	    if (this.firstPass === 0 && this.level === 8) {
 	      this.firstPass++;
 	    }
-	    if (this.firstPass === 1 && this.level >= 2) {
+	    if (this.firstPass === 1 && this.level >= 8) {
 	      this.firstPass++;
 	      this.level--;
 	      this.info.saveScore();
@@ -160,7 +160,7 @@
 	      this.level++;
 	      return true;
 	    }
-	    if (this.level === 2) {
+	    if (this.level === 8) {
 	      return true;
 	    } else if (this.level === 9) {
 	      this.level = 8;
